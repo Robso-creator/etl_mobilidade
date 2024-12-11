@@ -1,6 +1,15 @@
 all:
 	@echo "#### functions implemented"
 	@echo "make build-img-local ............... build image"
+	@echo "make up ............................ docker compose up -d"
+	@echo "make stop .......................... docker compose stop"
+	@echo "make down .......................... docker compose down"
+	@echo "make rm ............................ remove all exited containers and all dangling volumes"
+	@echo "make du ............................ docker compose down && docker compose up -d"
+	@echo "make de ............................ docker compose down && docker exec -it main_etl_mobilidade bash"
+	@echo "make enter-local ................... docker exec -it main_etl_mobilidade bash"
+	@echo "make bypass-enter-local ............ docker exec -it main_etl_mobilidade bash"
+	@echo ""
 
 
 build-img-local:
@@ -11,7 +20,7 @@ up:
 	@echo "[UP]"
 	@echo "docker compose up -d"
 	@docker compose up -d
-	@echo "wait 10 seconds and go -> http://localhost:9000/ for minio"
+	@echo "wait 10 seconds and go -> http://localhost:9004/ for minio"
 
 stop:
 	@echo "[STOP]"

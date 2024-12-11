@@ -4,13 +4,11 @@ services:
   etl_mobilidade:
     image: etl_mobilidade:1.0
     container_name: main_etl_mobilidade
+    restart: always
     env_file:
       - .env
     volumes:
       - .:/opt/app
-    environment:
-      - LANG=en_US.UTF-8
-      - LC_ALL=en_US.UTF-8
     networks:
       docker_network:
   minio:

@@ -11,10 +11,9 @@ WORKDIR /opt/app
 
 RUN mkdir -p /src/
 
-
 COPY requirements/requirements.txt requirements/requirements.txt
 
 RUN pip install -r requirements/requirements.txt
 
 COPY src/ src/
-ENTRYPOINT []
+CMD ["tail", "-f", "/dev/null"]
