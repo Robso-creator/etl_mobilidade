@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  etl_mobilidade:
+    image: etl_mobilidade:1.0
+    container_name: main_etl_mobilidade
+    env_file:
+      - .env
+    volumes:
+      - .:/opt/app
+    environment:
+      - LANG=en_US.UTF-8
+      - LC_ALL=en_US.UTF-8
+    networks:
+      docker_network:
+  minio:
+    image: minio/minio:latest
+    container_name: minio-mobilidade
+    ports:
+      - "9003:9000"
+      - "9004:9001"
+    volumes:
+      - data-minio-mobilidade:/data
+    env_file:
+      - .env
+    command: server /data --console-address :9001
+    networks:
+      docker_network:
+  createbucket:
+    image: minio/mc:latest
+    container_name: minio-create-bucket-mobilidade
+    depends_on:
+      - minio
+    env_file:
+      - .env
+    entrypoint: >
+      /bin/sh -c "
+        /usr/bin/mc config host add --api s3v4 s3 http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
+      /usr/bin/mc mb s3/$MINIO_BUCKET/;
+      /usr/bin/mc anonymous set download s3/$MINIO_BUCKET;
+      "
+    networks:
+      docker_network:
+
+
+networks:
+  docker_network:
+
+volumes:
+    data-minio-mobilidade:
