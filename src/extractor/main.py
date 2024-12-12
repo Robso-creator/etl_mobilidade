@@ -1,25 +1,32 @@
-import urllib.request
-import json
-from src.helpers.logger import SetupLogger
-from src.helpers.aws.s3 import S3
 import io
+import json
+import urllib.request
+
+from src.helpers.aws.s3 import S3
+from src.helpers.logger import SetupLogger
 from src.helpers.transformation import remove_accents
 
 _log = SetupLogger('etl_mobilidade.src.extractor.main')
 
-lst_packages = ['posto-de-venda-rotativo', 'redutor-de-velocidade', 'circulacao-viaria-no-do-trecho',
-                'localizacao-das-sinalizacoes-semaforicas',
-                'faces-de-quadras-regulamentadas-com-estacionamento-rotativo',
-                'estacionamento-rotativo-para-motofrete', 'estacionamento_idoso',
-                'relacao-de-ocorrencias-de-acidentes-de-transito-com-vitima',
-                'relacao-dos-logradouros-dos-locais-de-acidentes-de-transito-com-vitima',
-                'relacao-dos-veiculos-envolvidos-nos-acidentes-de-transito-com-vitima',
-                'relacao-das-pessoas-envolvidas-nos-acidentes-de-transito-com-vitima']
+lst_packages = [
+    'posto-de-venda-rotativo',
+    'redutor-de-velocidade',
+    'circulacao-viaria-no-do-trecho',
+    'localizacao-das-sinalizacoes-semaforicas',
+    'faces-de-quadras-regulamentadas-com-estacionamento-rotativo',
+    'estacionamento-rotativo-para-motofrete',
+    'estacionamento_idoso',
+    'relacao-de-ocorrencias-de-acidentes-de-transito-com-vitima',
+    'relacao-dos-logradouros-dos-locais-de-acidentes-de-transito-com-vitima',
+    'relacao-dos-veiculos-envolvidos-nos-acidentes-de-transito-com-vitima',
+    'relacao-das-pessoas-envolvidas-nos-acidentes-de-transito-com-vitima',
+]
 
 
 def main():
     headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"}
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
+    }
     CORE_URL = 'https://dados.pbh.gov.br/api/3/action/'
     s3_client = S3()
 
@@ -30,17 +37,32 @@ def main():
 
         for resource in [_dict for _dict in response_dict if _dict['format'] == 'CSV']:
             _log.info(f"Getting data from resource {resource['name']} | {resource['id']}")
-            response = urllib.request.Request(f"{CORE_URL}datastore_search?resource_id={resource['id']}&limit=10000",
-                                              headers=headers)
+            response = urllib.request.Request(
+                f"{CORE_URL}datastore_search?resource_id={resource['id']}&limit=10000",
+                headers=headers,
+            )
             _dict = {
-                        'metadata': resource,
-                        'data': json.loads(urllib.request.urlopen(response).read())['result']['records']
-                    }
+                'metadata': resource,
+                'data': json.loads(urllib.request.urlopen(response).read())['result']['records'],
+            }
 
             json_data = json.dumps(_dict)
             json_buffer = io.BytesIO(json_data.encode('utf-8'))
-            file_name = resource['name'].split('.')[0].replace(' ', '_').replace('-', '_').replace('(', '').replace(')',
-                                                    '').replace('/', '_').replace('__', '_').replace('__', '_').lower()
+            file_name = (
+                resource['name']
+                .split('.')[0]
+                .replace(' ', '_')
+                .replace('-', '_')
+                .replace('(', '')
+                .replace(
+                    ')',
+                    '',
+                )
+                .replace('/', '_')
+                .replace('__', '_')
+                .replace('__', '_')
+                .lower()
+            )
             file_name = remove_accents(file_name)
 
             s3_client.write_file(json_buffer, f"{package}/{file_name}.json")

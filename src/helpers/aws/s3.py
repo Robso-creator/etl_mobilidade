@@ -1,5 +1,3 @@
-import concurrent
-import functools
 import io
 import json
 import os
@@ -8,8 +6,8 @@ import pandas as pd
 from botocore.exceptions import ClientError
 
 from src import settings
-from src.helpers.logger import SetupLogger
 from src.helpers.aws.core import AWS
+from src.helpers.logger import SetupLogger
 
 _log = SetupLogger('etl_mobilidade.src.helpers.s3')
 
@@ -190,6 +188,7 @@ class S3(AWS):
         _log.info(f"Returning list folders from prefix {prefix}")
 
         return list_file_path, list_file_name
+
 
 if __name__ == '__main__':
     s3_client = S3()

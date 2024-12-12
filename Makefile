@@ -73,3 +73,7 @@ phoenix:
 	@docker build -t etl_mobilidade:1.0 -f "./Dockerfile" "."
 	@echo "docker compose up -d"
 	@docker compose up -d
+
+pc:
+	@echo "pre-commit"
+	@pre-commit run --all-files
