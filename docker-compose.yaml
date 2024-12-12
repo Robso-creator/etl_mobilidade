@@ -39,6 +39,24 @@ services:
       "
     networks:
       docker_network:
+  db-mobilidade:
+    # image tag matches "liber-k8s/templates/postgresql-analytics.yaml.gotmpl" -> 'image.tag'
+    image: bitnami/postgresql:14.2.0-debian-10-r4
+    container_name: db-mobilidade
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mobilidade
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 5s
+      retries: 20
+    networks:
+      docker_network:
+    volumes:
+      - mobilidade-postgres-db-volume:/var/lib/postgresql/data
 
 
 networks:
@@ -46,3 +64,4 @@ networks:
 
 volumes:
     data-minio-mobilidade:
+    mobilidade-postgres-db-volume:

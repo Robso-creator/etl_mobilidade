@@ -9,6 +9,8 @@ all:
 	@echo "make de ............................ docker compose down && docker exec -it main_etl_mobilidade bash"
 	@echo "make enter-local ................... docker exec -it main_etl_mobilidade bash"
 	@echo "make bypass-enter-local ............ docker exec -it main_etl_mobilidade bash"
+	@echo "make phoenix ....................... down | rm | build dev | up"
+	@echo "make pc ............................ pre-commit"
 	@echo ""
 
 

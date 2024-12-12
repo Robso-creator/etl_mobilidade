@@ -48,21 +48,7 @@ def main():
 
             json_data = json.dumps(_dict)
             json_buffer = io.BytesIO(json_data.encode('utf-8'))
-            file_name = (
-                resource['name']
-                .split('.')[0]
-                .replace(' ', '_')
-                .replace('-', '_')
-                .replace('(', '')
-                .replace(
-                    ')',
-                    '',
-                )
-                .replace('/', '_')
-                .replace('__', '_')
-                .replace('__', '_')
-                .lower()
-            )
+            file_name = resource['name'].split('.')[0].replace(' ', '_').replace('-', '_').replace('(', '').replace(')', '').replace('/', '_').replace('__', '_').replace('__', '_').lower()
             file_name = remove_accents(file_name)
 
             s3_client.write_file(json_buffer, f"{package}/{file_name}.json")
