@@ -1,5 +1,4 @@
 import json
-from io import BytesIO
 
 import pandas as pd
 
@@ -38,15 +37,8 @@ def main():
             df['LAST_MODIFIED'] = json_content['metadata']['last_modified']
             df['LAST_MODIFIED'] = pd.to_datetime(df['LAST_MODIFIED'])
 
-            buffer = BytesIO()
-            df.to_csv(buffer, index=False)
-            buffer.seek(0)
-
-            s3_client.write_file(buffer, f"bronze/{package}/{list_file_name[i].replace('.json', '.csv')}")
+            s3_client.write_csv_file(df, f"bronze/{package}/{list_file_name[i].replace('.json', '.csv')}")
 
 
 if __name__ == '__main__':
-    # main()
-    s3_client = S3()
-    df = s3_client.read_to_df('bronze/posto-de-venda-rotativo/20230301_posto_venda_rotativo.csv')
-    print(df.head())
+    main()

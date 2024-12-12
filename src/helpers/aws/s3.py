@@ -113,7 +113,7 @@ class S3(AWS):
 
         return path
 
-    def write_csv_file(self, df, path, sep=',', header=False, decimal_format='.'):
+    def write_csv_file(self, df, path, sep=',', header=False, decimal_format='.', index=False):
         """
         path -> path to write csv (eg. 'posto-de-venda-rotativo/xxx.csv')
         return (s3.object)
@@ -129,7 +129,7 @@ class S3(AWS):
             raise TypeError(f"File is not csv --> '{path}'")
 
         csv_buffer = io.StringIO()
-        df.to_csv(csv_buffer, sep=sep, decimal=decimal_format, header=header, index=False)
+        df.to_csv(csv_buffer, sep=sep, decimal=decimal_format, header=header, index=index)
 
         return self.write_file(csv_buffer, path)
 

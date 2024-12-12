@@ -5,5 +5,4 @@ alembic==1.14.0
 psycopg2-binary==2.9.9
 SQLAlchemy==2.0.0
 loadotenv==1.0.1
-geopy==2.4.1
 pyproj==3.7.0
