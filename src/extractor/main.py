@@ -38,7 +38,7 @@ def main():
         for resource in [_dict for _dict in response_dict if _dict['format'] == 'CSV']:
             _log.info(f"Getting data from resource {resource['name']} | {resource['id']}")
             response = urllib.request.Request(
-                f"{CORE_URL}datastore_search?resource_id={resource['id']}&limit=10000",
+                f"{CORE_URL}datastore_search?resource_id={resource['id']}&limit=1000000",
                 headers=headers,
             )
             _dict = {
@@ -51,7 +51,7 @@ def main():
             file_name = resource['name'].split('.')[0].replace(' ', '_').replace('-', '_').replace('(', '').replace(')', '').replace('/', '_').replace('__', '_').replace('__', '_').lower()
             file_name = remove_accents(file_name)
 
-            s3_client.write_file(json_buffer, f"{package}/{file_name}.json")
+            s3_client.write_file(json_buffer, f"landing/{package}/{file_name}.json")
 
 
 if __name__ == '__main__':

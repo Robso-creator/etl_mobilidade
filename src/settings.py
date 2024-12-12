@@ -12,6 +12,6 @@ MINIO_ROOT_USER = os.getenv('MINIO_ROOT_USER')
 MINIO_ROOT_PASSWORD = os.getenv('MINIO_ROOT_PASSWORD')
 MINIO_BUCKET = os.getenv('MINIO_BUCKET')
 
-DB_URI = 'postgresql://postgres:postgres@localhost:5432/postgres'
+DB_URI = os.getenv('DB_URI')
 
 AWS_ENDPOINT_URL_MINIO = 'http://minio-mobilidade:9000'
