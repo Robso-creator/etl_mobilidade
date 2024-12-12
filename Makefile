@@ -55,3 +55,21 @@ enter-local: up
 bypass-enter-local:
 	@echo "Enter image local..."
 	@docker exec -it main_etl_mobilidade bash
+
+phoenix:
+	@echo "[PHOENIX]"
+	@echo ""
+	@echo "docker compose down"
+	@docker compose down --remove-orphans
+	@echo "remove all stopped containers"
+	command docker ps -aqf status=exited | xargs -r docker rm
+	@echo ""
+	@echo ""
+	@echo "remove all dangling volumes"
+	@# The dangling filter matches on all volumes not referenced by any containers
+	command docker volume ls -qf dangling=true | xargs -r docker volume rm
+	@echo ""
+	@echo "Building local image docker..."
+	@docker build -t etl_mobilidade:1.0 -f "./Dockerfile" "."
+	@echo "docker compose up -d"
+	@docker compose up -d
