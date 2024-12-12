@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/../dados_publicos_cnpj_receita_federal/.idea/dados_publicos_cnpj_receita_federal.iml" filepath="$PROJECT_DIR$/../dados_publicos_cnpj_receita_federal/.idea/dados_publicos_cnpj_receita_federal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/etl_mobilidade.iml" filepath="$PROJECT_DIR$/.idea/etl_mobilidade.iml" />
-    </modules>
-  </component>
-</project>
