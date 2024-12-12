@@ -79,3 +79,8 @@ phoenix:
 pc:
 	@echo "pre-commit"
 	@pre-commit run --all-files
+
+create_revisions:
+	@echo "-------CREATE REVISIONS -------"
+	@echo ""
+	@python -m src.database.create_revisions
