@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  etl_mobilidade:
+  etl_mobilidade: &mobilidade-common
     image: etl_mobilidade:1.0
     container_name: main_etl_mobilidade
     restart: always
@@ -56,6 +56,19 @@ services:
       docker_network:
     volumes:
       - mobilidade-postgres-db-volume:/var/lib/postgresql/data
+  db-migrate-mobilidade:
+    <<: *mobilidade-common
+    container_name: db-migrate-mobilidade
+    restart: "no"
+    depends_on:
+      db-mobilidade:
+        condition: service_healthy
+    environment:
+      - DB_URI_ANALYTICS=postgresql://postgres:postgres@localhost:5432/postgres
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    entrypoint: bash
+    command: -c "alembic upgrade head"
 
 networks:
   docker_network:
