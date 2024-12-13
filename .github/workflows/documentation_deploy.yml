@@ -1,0 +1,29 @@
+name: documentation_deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create .env
+        run: |
+          touch .env
+          echo DISCORD_SERVER_ID= ${{ secrets.DISCORD_SERVER_ID }} >> .env
+
+      - name: Reload documentations
+        run: make local_doc
+
+      - name: Run deploy on gh-pages
+        run: mkdocs gh-deploy --force --clean --verbose
