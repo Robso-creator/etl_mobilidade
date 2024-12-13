@@ -10,15 +10,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.x
+          python-version: 3.12
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements/requirements.txt
 
       - name: Reload documentations
         run: make local_doc
 
       - name: Run deploy on gh-pages
-        run: mkdocs gh-deploy --force --clean --verbose
+        run: mkdocs gh-deploy --force --clean --verbose --remote-branch gh-pages
