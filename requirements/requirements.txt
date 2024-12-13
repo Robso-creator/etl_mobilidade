@@ -6,3 +6,6 @@ psycopg2-binary==2.9.9
 SQLAlchemy==2.0.0
 loadotenv==1.0.1
 pyproj==3.7.0
+pytest==8.3.4
+mkdocs==1.5.3
+mkdocs-material==9.5.6

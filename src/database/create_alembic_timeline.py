@@ -12,14 +12,14 @@ def create_alembic_timeline(verbose=True):
         if '__init__.py' not in file:
             with open(file) as f:
                 for line in f.readlines():
-                    if line.startswith('revision ='):
+                    if line.startswith('revision:'):
                         revision = line.split('=')[1].replace('\n', '')
-                    if line.startswith('down_revision ='):
+                    if line.startswith('down_revision:'):
                         down_revision = line.split('=')[1].replace('\n', '')
                         if down_revision == ' None':
                             down_revision = None
 
-                    if 'def upgrade():' in line:
+                    if 'def upgrade() -> None:' in line:
                         list_files.append(
                             {
                                 'file': file,

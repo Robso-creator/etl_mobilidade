@@ -39,6 +39,9 @@ def main():
     for col in cols_to_strip:
         df_final[col] = df_final[col].str.strip()
 
+    for col_boolean in ['hora_informada', 'indicador_fatalidade', 'local_sinalizado']:
+        df_final[col_boolean] = df_final[col_boolean].replace({'NÃO': False, 'SIM': True, 'NÃO INFORMADO': None})
+
     df_final['data_alteracao_smsa'] = df_final['data_alteracao_smsa'].replace('00/00/0000', pd.NaT)
     _log.info('Writing file to S3')
     s3_client.write_csv_file(df_final, f"gold/{folder}/enhanced_{folder.replace('-', '_')}.csv", header=True)

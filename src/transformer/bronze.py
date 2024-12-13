@@ -31,6 +31,9 @@ def main():
 
             df = pd.DataFrame(json_content['data'])
 
+            if df.empty:
+                continue
+
             df['RESOURCE_ID'] = json_content['metadata']['id']
             df['PACKAGE_ID'] = json_content['metadata']['package_id']
             df['NAME'] = json_content['metadata']['name']

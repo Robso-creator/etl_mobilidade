@@ -84,3 +84,15 @@ create_revisions:
 	@echo "-------CREATE REVISIONS -------"
 	@echo ""
 	@python -m src.database.create_revisions
+
+local_doc:
+	@echo 'RUNNING DOCUMENTATION SCRIPTS'
+	@for script in ./src/continuous_documentation/*.py; do \
+		echo 'Running script:' $$script; \
+		python3 -m src.continuous_documentation."$$(basename "$$script" .py)"; \
+	done
+
+
+build_doc:
+	mkdocs build
+	mkdocs serve

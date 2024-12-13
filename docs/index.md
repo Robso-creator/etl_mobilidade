@@ -1,13 +1,71 @@
-# Documentação do Bot Discord
+# ETL Dados de Mobilidade da Prefeitura de Belo Horizonte
+*Projeto elaborado em **72 horas** para realizar a extração, transformação e carga de dados de mobilidade urbana da prefeitura de Belo Horizonte.*
 
-Bem-vindo à documentação oficial do nosso Bot Discord desenvolvido em Python! Este projeto oferece diversas funcionalidades para aprimorar a experiência do usuário nos servidores do Discord. O bot foi criado com o objetivo de ser flexível, amigável e expansível, permitindo a personalização de comandos e integração com outros serviços.
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+![makefile](https://img.shields.io/badge/makefile-enabled-brightgreen?logo=gmail&logoColor=blue)
+[![pytest](https://img.shields.io/badge/pytest-enabled-brightgreen?logo=pytest&logoColor=yellow)](https://docs.pytest.org/en/7.4.x/)
+[![docker](https://img.shields.io/badge/docker-enabled-brightgreen?logo=docker&logoColor=blue)](https://www.docker.com/)
+[![minio](https://img.shields.io/badge/minio-enabled-brightgreen?logo=minio&logoColor=red)](https://min.io/)
+[![postgresql](https://img.shields.io/badge/postgresql-enabled-brightgreen?logo=postgresql&logoColor=blue)](https://www.postgresql.org/)
 
-## Funcionalidades Principais
+---
 
-### 1. Comandos Personalizados
+## Tabela de Conteúdos
 
-O bot suporta uma variedade de comandos personalizáveis para atender às necessidades específicas do seu servidor. Você pode configurar novos comandos ou personalizar os existentes de acordo com suas preferências.
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Link repositório](#link-repositório)
 
-### 2. Integração com Outros Serviços
+---
 
-Além das funcionalidades nativas, nosso bot é projetado para integrar-se facilmente a outros serviços. Isso proporciona uma experiência mais completa e personalizada para os usuários do seu servidor.
+## Instalação
+
+Passos para instalar e configurar o projeto localmente:
+
+```bash
+# Clone o repositório
+git clone git@github.com:Robso-creator/etl_mobilidade.git
+
+# Entre no diretório do projeto
+cd etl_mobilidade
+
+# Crie uma virtualenv
+python3 -m venv venv
+. venv/bin/activate
+
+# Instale as dependências
+pip install -r requirements.txt
+```
+
+Crie arquivo `.env` no diretório raiz do projeto com as seguintes variáveis de ambiente:
+
+```env
+ENV=development
+
+MINIO_ROOT_USER=user
+MINIO_ROOT_PASSWORD=password
+MINIO_BUCKET=bucket-mobilidade-local
+
+DB_URI=postgresql://postgres:postgres@localhost:5432/mobilidade
+```
+
+---
+
+## Uso
+
+```bash
+# Faça a build da imagem
+make build-img-local
+
+# Execute o container
+make enter-container
+
+# Execute o script
+python -m src.pipeline
+```
+
+> Acesse o MinIO em [http://localhost:9004](http://localhost:9004) com as credenciais definidas no arquivo `.env` para visualizar os arquivos extraídos/tratados.
+
+## Link repositório
+
+[Repositório](https://github.com/Robso-creator/etl_mobilidade)

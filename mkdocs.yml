@@ -1,5 +1,5 @@
-site_name: Discord Bot
-repo_url: https://github.com/Robso-creator/discord_bot
+site_name: ETL Mobilidade BH
+repo_url: https://github.com/Robso-creator/etl_mobilidade
 
 exclude_docs:
   README*

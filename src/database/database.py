@@ -4,14 +4,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 
-from analytics_db_models import settings
+from src import settings
 
 _dbsession = None
 _engine = None
 _sqlalchemy_url = None
 
 
-def set_session(sqlalchemy_url=settings.DB_URI_ANALYTICS, engine=None):
+def set_session(sqlalchemy_url=settings.DB_URI, engine=None):
     global _dbsession, _engine, _sqlalchemy_url
 
     _engine = _engine or engine or create_engine(sqlalchemy_url)
@@ -41,7 +41,7 @@ def session():
 
 
 @contextmanager
-def connect_database(uri_string, env=None):
+def connect_database():
     global _dbsession, _engine, _sqlalchemy_url
 
     set_session()
@@ -63,7 +63,7 @@ def connect_database(uri_string, env=None):
             _sqlalchemy_url = None
 
 
-def execute_query(command, uri_string='redshift.url'):
+def execute_query(command):
     global _dbsession, _engine, _sqlalchemy_url
     set_session()
 
@@ -79,7 +79,7 @@ def execute_query(command, uri_string='redshift.url'):
     _sqlalchemy_url = None
 
 
-def copy_local_csv(filename, table_name, uri_string='redshift.url'):
+def copy_local_csv(filename, table_name):
     global _dbsession, _engine
     set_session()
 

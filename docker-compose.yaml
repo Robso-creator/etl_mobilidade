@@ -47,13 +47,14 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=mobilidade
+      - POSTGRES_DB=postgres
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "postgres" ]
       interval: 5s
       retries: 20
     networks:
       docker_network:
+        ipv4_address: 172.19.0.20
     volumes:
       - mobilidade-postgres-db-volume:/var/lib/postgresql/data
   db-migrate-mobilidade:
@@ -64,7 +65,9 @@ services:
       db-mobilidade:
         condition: service_healthy
     environment:
-      - DB_URI_ANALYTICS=postgresql://postgres:postgres@localhost:5432/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     entrypoint: bash
@@ -72,6 +75,10 @@ services:
 
 networks:
   docker_network:
+      driver: bridge
+      ipam:
+        config:
+          - subnet: 172.19.0.0/16
 
 volumes:
     data-minio-mobilidade:

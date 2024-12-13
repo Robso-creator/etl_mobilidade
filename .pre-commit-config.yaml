@@ -81,6 +81,7 @@ repos:
     hooks:
       - id: black
         args: [ "--line-length=800", "--skip-string-normalization" ]
+        exclude: ^src/database/models/__init__.py
   # An extremely fast Python linter, written in Rust.
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     # Ruff version.
@@ -89,3 +90,4 @@ repos:
       - id: ruff
         # Respect `exclude` and `extend-exclude` settings.
         args: ["--line-length=320", "--fix" ]
+        exclude: ^src/database/models/__init__.py
