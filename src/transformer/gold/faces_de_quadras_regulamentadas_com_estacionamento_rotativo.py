@@ -1,13 +1,16 @@
 import pandas as pd
 
 from src.helpers.aws.s3 import S3
+from src.helpers.logger import SetupLogger
 from src.helpers.transformation import convert_utm_to_latlon
-from src.helpers.transformation import extract_coordinates_point
+from src.helpers.transformation import extract_coordinates_multilinestring
+
+_log = SetupLogger('etl_mobilidade.src.transformer.gold.faces_de_quadras_regulamentadas_com_estacionamento_rotativo')
 
 
 def main():
     s3_client = S3()
-    folder = 'posto-de-venda-rotativo'
+    folder = 'faces-de-quadras-regulamentadas-com-estacionamento-rotativo'
     list_file_path, list_file_name, _ = s3_client.list_files(prefix=f'bronze/{folder}')
 
     df_list = []
@@ -20,7 +23,7 @@ def main():
     df_final = pd.concat(df_list, ignore_index=True)
     del df_list
 
-    df_final[['easting', 'northing']] = df_final['geometria'].apply(lambda x: pd.Series(extract_coordinates_point(x)))
+    df_final[['easting', 'northing']] = df_final['geometria'].apply(lambda x: pd.Series(extract_coordinates_multilinestring(x)))
     df_final[['latitude', 'longitude']] = df_final.apply(
         lambda row: pd.Series(convert_utm_to_latlon(row['easting'], row['northing'])),
         axis=1,
@@ -31,5 +34,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# python -m src.transformer.gold.posto_de_venda_rotativo

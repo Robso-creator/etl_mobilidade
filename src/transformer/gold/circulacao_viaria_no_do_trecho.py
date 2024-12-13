@@ -7,7 +7,7 @@ from src.helpers.transformation import extract_coordinates_point
 
 def main():
     s3_client = S3()
-    folder = 'posto-de-venda-rotativo'
+    folder = 'circulacao-viaria-no-do-trecho'
     list_file_path, list_file_name, _ = s3_client.list_files(prefix=f'bronze/{folder}')
 
     df_list = []
@@ -31,5 +31,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# python -m src.transformer.gold.posto_de_venda_rotativo

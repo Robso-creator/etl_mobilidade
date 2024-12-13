@@ -1,13 +1,16 @@
 import pandas as pd
 
 from src.helpers.aws.s3 import S3
+from src.helpers.logger import SetupLogger
 from src.helpers.transformation import convert_utm_to_latlon
 from src.helpers.transformation import extract_coordinates_point
+
+_log = SetupLogger('etl_mobilidade.src.transformer.gold.estacionamento_idoso')
 
 
 def main():
     s3_client = S3()
-    folder = 'posto-de-venda-rotativo'
+    folder = 'estacionamento_idoso'
     list_file_path, list_file_name, _ = s3_client.list_files(prefix=f'bronze/{folder}')
 
     df_list = []
@@ -31,5 +34,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# python -m src.transformer.gold.posto_de_venda_rotativo

@@ -3,8 +3,13 @@ import re
 import unidecode
 from pyproj import Transformer
 
+from src.helpers.logger import SetupLogger
+
+_log = SetupLogger('etl_mobilidade.src.helpers.transformation')
+
 
 def convert_utm_to_latlon(easting, northing, zone_number=23):
+    _log.info('Converting UTM to LatLon')
     utm_crs = f"EPSG:327{zone_number}"
     wgs84_crs = 'EPSG:4326'
 
@@ -14,15 +19,28 @@ def convert_utm_to_latlon(easting, northing, zone_number=23):
     return lat, lon
 
 
-def extract_coordinates_point(geometry):
-    match = re.match(r'POINT \(([^ ]+) ([^ ]+)\)', geometry)
+def extract_coordinates_point(point):
+    _log.info('Extracting coordinates from POINT')
+    match = re.match(r'POINT \(([^ ]+) ([^ ]+)\)', point)
     if match:
         easting, northing = match.groups()
         return float(easting), float(northing)
     return None, None
 
 
+def extract_coordinates_multilinestring(multilinestring):
+    _log.info('Extracting coordinates from MULTILINESTRING')
+    pattern = r'MULTILINESTRING \(\(([^,]+)'
+    match = re.search(pattern, multilinestring)
+    if match:
+        coord_str = match.group(1)
+        easting, northing = map(float, coord_str.split())
+        return easting, northing
+    return None, None
+
+
 def extract_coordinates_linestring(linestring):
+    _log.info('Extracting coordinates from LINESTRING')
     match = re.match(r'LINESTRING \(([^,]+)', linestring)
     if match:
         coord_str = match.group(1)
@@ -32,4 +50,5 @@ def extract_coordinates_linestring(linestring):
 
 
 def remove_accents(input_str):
+    _log.info(f'Removing accents from {input_str}')
     return unidecode.unidecode(input_str)
