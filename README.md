@@ -46,7 +46,7 @@ MINIO_ROOT_USER=user
 MINIO_ROOT_PASSWORD=password
 MINIO_BUCKET=bucket-mobilidade-local
 
-DB_URI=postgresql://postgres:postgres@localhost:5432/mobilidade
+DB_URI=postgresql://postgres:postgres@172.19.0.20:5432/mobilidade
 ```
 
 ---

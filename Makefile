@@ -85,6 +85,16 @@ create_revisions:
 	@echo ""
 	@python -m src.database.create_revisions
 
+redo_last_upgrade:
+	@echo "------- REDO LAST UPGRADE -------"
+	@echo ""
+		@read -p "Are you sure you wanna execute this code? (y/n) " confirm; \
+	if [ "$$confirm" != "y" ]; then \
+		echo "Execution canceled."; \
+	else \
+		python -m src.database.redo_last_upgrade; \
+	fi
+
 local_doc:
 	@echo 'RUNNING DOCUMENTATION SCRIPTS'
 	@for script in ./src/continuous_documentation/*.py; do \

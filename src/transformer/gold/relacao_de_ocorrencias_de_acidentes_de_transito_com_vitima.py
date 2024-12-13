@@ -32,6 +32,7 @@ def main():
         '_id': 'id',
         'coordenada_x': 'easting',
         'coordenada_y': 'northing',
+        'data hora_boletim': 'data_hora_boletim',
     }
     df_final = df_final.rename(columns=dict_rename)
 
@@ -41,6 +42,9 @@ def main():
 
     for col_boolean in ['hora_informada', 'indicador_fatalidade', 'local_sinalizado']:
         df_final[col_boolean] = df_final[col_boolean].replace({'NÃO': False, 'SIM': True, 'NÃO INFORMADO': None})
+
+    for col in ['data_hora_boletim', 'data_inclusao']:
+        df_final[col] = pd.to_datetime(df_final[col], dayfirst=True)
 
     df_final['data_alteracao_smsa'] = df_final['data_alteracao_smsa'].replace('00/00/0000', pd.NaT)
     _log.info('Writing file to S3')
