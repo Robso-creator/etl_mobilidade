@@ -1,8 +1,8 @@
 """'main'
 
-Revision ID: 1a7373ae8efd
+Revision ID: 2610f232a617
 Revises:
-Create Date: 2024-12-13 16:33:21.659717
+Create Date: 2024-12-13 19:46:08.295255
 
 """
 from typing import Sequence
@@ -13,7 +13,7 @@ from alembic import op
 
 
 # revision identifiers, used by Alembic.
-revision: str = '1a7373ae8efd'
+revision: str = '2610f232a617'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
