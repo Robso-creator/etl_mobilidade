@@ -29,6 +29,11 @@ def main():
         lambda row: pd.Series(convert_utm_to_latlon(row['easting'], row['northing'])),
         axis=1,
     )
+    dict_rename = {
+        '_id': 'id',
+    }
+    df_final = df_final.rename(columns=dict_rename)
+    df_final['last_modified'] = pd.to_datetime(df_final['last_modified'])
 
     _log.info('Writing file to S3')
     s3_client.write_csv_file(df_final, f"gold/{folder}/enhanced_{folder.replace('-', '_')}.csv", header=True)

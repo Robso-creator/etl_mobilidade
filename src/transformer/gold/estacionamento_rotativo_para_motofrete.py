@@ -28,6 +28,10 @@ def main():
         lambda row: pd.Series(convert_utm_to_latlon(row['easting'], row['northing'])),
         axis=1,
     )
+    dict_rename = {
+        '_id': 'id',
+    }
+    df_final = df_final.rename(columns=dict_rename)
 
     s3_client.write_csv_file(df_final, f"gold/{folder}/enhanced_{folder.replace('-', '_')}.csv", header=True)
 

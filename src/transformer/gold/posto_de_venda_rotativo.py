@@ -1,8 +1,11 @@
 import pandas as pd
 
 from src.helpers.aws.s3 import S3
+from src.helpers.logger import SetupLogger
 from src.helpers.transformation import convert_utm_to_latlon
 from src.helpers.transformation import extract_coordinates_point
+
+_log = SetupLogger('etl_mobilidade.src.transformer.gold.posto_de_venda_rotativo')
 
 
 def main():
@@ -25,6 +28,10 @@ def main():
         lambda row: pd.Series(convert_utm_to_latlon(row['easting'], row['northing'])),
         axis=1,
     )
+    dict_rename = {
+        '_id': 'id',
+    }
+    df_final = df_final.rename(columns=dict_rename)
 
     s3_client.write_csv_file(df_final, f"gold/{folder}/enhanced_{folder.replace('-', '_')}.csv", header=True)
 

@@ -29,6 +29,14 @@ def main():
         axis=1,
     )
 
+    for col_boolean in ['botoeira', 'botoeira_sonora', 'laco_detector_veicular']:
+        df_final[col_boolean] = df_final[col_boolean].replace({'Não': False, 'Sim': True})
+
+    dict_rename = {
+        '_id': 'id',
+    }
+    df_final = df_final.rename(columns=dict_rename)
+
     s3_client.write_csv_file(df_final, f"gold/{folder}/enhanced_{folder.replace('-', '_')}.csv", header=True)
 
 
