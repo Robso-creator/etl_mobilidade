@@ -37,7 +37,7 @@ def main():
             df['LAST_MODIFIED'] = json_content['metadata']['last_modified']
             df['LAST_MODIFIED'] = pd.to_datetime(df['LAST_MODIFIED'])
 
-            s3_client.write_csv_file(df, f"bronze/{package}/{list_file_name[i].replace('.json', '.csv')}")
+            s3_client.write_csv_file(df, f"bronze/{package}/{list_file_name[i].replace('.json', '.csv')}", header=True)
 
 
 if __name__ == '__main__':
