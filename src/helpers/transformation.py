@@ -9,7 +9,6 @@ _log = SetupLogger('etl_mobilidade.src.helpers.transformation')
 
 
 def convert_utm_to_latlon(easting, northing, zone_number=23):
-    _log.info('Converting UTM to LatLon')
     utm_crs = f"EPSG:327{zone_number}"
     wgs84_crs = 'EPSG:4326'
 
@@ -20,7 +19,6 @@ def convert_utm_to_latlon(easting, northing, zone_number=23):
 
 
 def extract_coordinates_point(point):
-    _log.info('Extracting coordinates from POINT')
     match = re.match(r'POINT \(([^ ]+) ([^ ]+)\)', point)
     if match:
         easting, northing = match.groups()
@@ -29,7 +27,6 @@ def extract_coordinates_point(point):
 
 
 def extract_coordinates_multilinestring(multilinestring):
-    _log.info('Extracting coordinates from MULTILINESTRING')
     pattern = r'MULTILINESTRING \(\(([^,]+)'
     match = re.search(pattern, multilinestring)
     if match:
@@ -40,7 +37,6 @@ def extract_coordinates_multilinestring(multilinestring):
 
 
 def extract_coordinates_linestring(linestring):
-    _log.info('Extracting coordinates from LINESTRING')
     match = re.match(r'LINESTRING \(([^,]+)', linestring)
     if match:
         coord_str = match.group(1)

@@ -1,3 +1,5 @@
+import pandas as pd
+import pandera as pa
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import Float
@@ -52,3 +54,114 @@ class EstacionamentoRotativo(Base):
     def get_config_dict(self):
         config = mount_config_dict(self)
         return config
+
+    @staticmethod
+    def get_dc_schema() -> pa.DataFrameSchema:
+        return pa.DataFrameSchema(
+            columns={
+                'id': pa.Column(
+                    dtype=int,
+                    checks=[
+                        pa.Check(lambda s: s.is_unique, error="A coluna 'id' deve conter valores únicos"),
+                    ],
+                    nullable=False,
+                    required=True,
+                    description='Identificador único do estacionamento',
+                ),
+                'fid': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='ID do estacionamento rotativo',
+                ),
+                'id_estacionamento': pa.Column(
+                    dtype=int,
+                    nullable=True,
+                    description='Identificador do estacionamento',
+                ),
+                'numero_vagas_fisicas': pa.Column(
+                    dtype=int,
+                    nullable=True,
+                    description='Número de vagas físicas',
+                ),
+                'numero_vagas_rotativas': pa.Column(
+                    dtype=int,
+                    nullable=True,
+                    description='Número de vagas rotativas',
+                ),
+                'tempo_permanencia': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Tempo máximo de permanência',
+                ),
+                'logradouro': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Nome do logradouro',
+                ),
+                'referencia_logradouro': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Referência do logradouro',
+                ),
+                'bairro': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Bairro do estacionamento',
+                ),
+                'geometria': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Geometria do estacionamento',
+                ),
+                'periodo_valido_regra_operacao': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Período válido de operação',
+                ),
+                'dia_regra_operacao': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Dias da semana de operação',
+                ),
+                'resource_id': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Identificador do recurso',
+                ),
+                'package_id': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Identificador do pacote',
+                ),
+                'name': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Nome do estacionamento',
+                ),
+                'last_modified': pa.Column(
+                    dtype=pd.Timestamp,
+                    nullable=True,
+                    description='Data e hora da última modificação',
+                ),
+                'easting': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Coordenada Easting',
+                ),
+                'northing': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Coordenada Northing',
+                ),
+                'latitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Latitude',
+                ),
+                'longitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Longitude',
+                ),
+            },
+        )

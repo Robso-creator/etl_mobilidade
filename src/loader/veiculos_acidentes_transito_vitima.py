@@ -1,5 +1,6 @@
 import pandas as pd
 
+from src.database.models import VeiculosAcidentesTransitoVitima
 from src.helpers.aws.s3 import S3
 from src.helpers.logger import SetupLogger
 from src.helpers.output_table import send_to_db
@@ -21,7 +22,7 @@ def main():
     df_final = pd.concat(df_list, ignore_index=True)
     del df_list
 
-    send_to_db(df_final, 'veiculos_acidentes_transito_vitima')
+    send_to_db(df_final, VeiculosAcidentesTransitoVitima)
 
 
 if __name__ == '__main__':

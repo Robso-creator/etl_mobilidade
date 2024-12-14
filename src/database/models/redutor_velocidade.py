@@ -1,3 +1,5 @@
+import pandas as pd
+import pandera as pa
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import Float
@@ -49,3 +51,90 @@ class RedutorVelocidade(Base):
     def get_config_dict(self):
         config = mount_config_dict(self)
         return config
+
+    @staticmethod
+    def get_dc_schema() -> pa.DataFrameSchema:
+        return pa.DataFrameSchema(
+            columns={
+                'id': pa.Column(
+                    dtype=int,
+                    checks=[
+                        pa.Check(lambda s: s.is_unique, error="A coluna 'id' deve conter valores únicos"),
+                    ],
+                    nullable=False,
+                    required=True,
+                    description='Identificador único do redutor de velocidade',
+                ),
+                'id_redutor_velocidade': pa.Column(
+                    dtype=int,
+                    description='Identificador do redutor de velocidade',
+                ),
+                'num_projeto_operacional': pa.Column(
+                    dtype=str,
+                    nullable=True,
+                    description='Número do projeto operacional',
+                ),
+                'endereco_referencia': pa.Column(
+                    dtype=str,
+                    description='Endereço de referência do redutor de velocidade',
+                ),
+                'bairro': pa.Column(
+                    dtype=str,
+                    description='Bairro onde está localizado o redutor de velocidade',
+                ),
+                'referencia_localizacao': pa.Column(
+                    dtype=str,
+                    description='Referência da localização do redutor de velocidade',
+                ),
+                'data_implantacao': pa.Column(
+                    dtype=pd.Timestamp,
+                    nullable=True,
+                    description='Data de implantação do redutor de velocidade',
+                ),
+                'data_ultima_manutencao': pa.Column(
+                    dtype=pd.Timestamp,
+                    nullable=True,
+                    description='Data da última manutenção do redutor de velocidade',
+                ),
+                'geometria': pa.Column(
+                    dtype=str,
+                    description='Geometria do redutor de velocidade',
+                ),
+                'resource_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do recurso',
+                ),
+                'package_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do pacote',
+                ),
+                'name': pa.Column(
+                    dtype=str,
+                    description='Nome do recurso',
+                ),
+                'last_modified': pa.Column(
+                    dtype=pd.Timestamp,
+                    description='Data e hora da última modificação',
+                ),
+                'easting': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Coordenada Easting',
+                ),
+                'northing': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Coordenada Northing',
+                ),
+                'latitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Latitude',
+                ),
+                'longitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Longitude',
+                ),
+            },
+        )

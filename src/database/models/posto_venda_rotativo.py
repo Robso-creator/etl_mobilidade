@@ -1,3 +1,5 @@
+import pandas as pd
+import pandera as pa
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import Float
@@ -45,3 +47,71 @@ class PostoVendaRotativo(Base):
     def get_config_dict(self):
         config = mount_config_dict(self)
         return config
+
+    @staticmethod
+    def get_dc_schema() -> pa.DataFrameSchema:
+        return pa.DataFrameSchema(
+            columns={
+                'id': pa.Column(
+                    dtype=int,
+                    checks=[
+                        pa.Check(lambda s: s.is_unique, error="A coluna 'id' deve conter valores únicos"),
+                    ],
+                    nullable=False,
+                    required=True,
+                    description='Identificador único do posto de venda rotativo',
+                ),
+                'id_posto_venda_rotativo': pa.Column(
+                    dtype=int,
+                    description='Identificador do posto de venda rotativo',
+                ),
+                'endereco': pa.Column(
+                    dtype=str,
+                    description='Endereço do posto de venda rotativo',
+                ),
+                'complemento': pa.Column(
+                    dtype=str,
+                    description='Complemento do endereço',
+                ),
+                'geometria': pa.Column(
+                    dtype=str,
+                    description='Geometria do posto de venda rotativo',
+                ),
+                'resource_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do recurso',
+                ),
+                'package_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do pacote',
+                ),
+                'name': pa.Column(
+                    dtype=str,
+                    description='Nome do recurso',
+                ),
+                'last_modified': pa.Column(
+                    dtype=pd.Timestamp,
+                    description='Data e hora da última modificação',
+                ),
+                'easting': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Coordenada Easting',
+                ),
+                'northing': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Coordenada Northing',
+                ),
+                'latitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Latitude',
+                ),
+                'longitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Longitude',
+                ),
+            },
+        )

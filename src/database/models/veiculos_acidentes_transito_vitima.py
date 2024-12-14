@@ -1,3 +1,5 @@
+import pandas as pd
+import pandera as pa
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import Float
@@ -49,3 +51,87 @@ class VeiculosAcidentesTransitoVitima(Base):
     def get_config_dict(self):
         config = mount_config_dict(self)
         return config
+
+    @staticmethod
+    def get_dc_schema() -> pa.DataFrameSchema:
+        return pa.DataFrameSchema(
+            columns={
+                'id': pa.Column(
+                    dtype=int,
+                    checks=[
+                        pa.Check(lambda s: s.is_unique, error="A coluna 'id' deve conter valores únicos"),
+                    ],
+                    nullable=False,
+                    required=True,
+                    description='Identificador único do veículo',
+                ),
+                'numero_boletim': pa.Column(
+                    dtype=str,
+                    description='Número do boletim de ocorrência',
+                ),
+                'data_hora_boletim': pa.Column(
+                    dtype=pd.Timestamp,
+                    description='Data e hora do boletim',
+                ),
+                'sequencial_veiculo': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Sequencial do veículo no boletim',
+                ),
+                'codigo_categoria': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Código da categoria do veículo',
+                ),
+                'descricao_categoria': pa.Column(
+                    dtype=str,
+                    description='Descrição da categoria do veículo',
+                ),
+                'codigo_especie': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Código da espécie do veículo',
+                ),
+                'descricao_especie': pa.Column(
+                    dtype=str,
+                    description='Descrição da espécie do veículo',
+                ),
+                'codigo_situacao': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Código da situação do veículo',
+                ),
+                'descricao_situacao': pa.Column(
+                    dtype=str,
+                    description='Descrição da situação do veículo',
+                ),
+                'tipo_socorro': pa.Column(
+                    dtype=int,
+                    description='Tipo de socorro',
+                ),
+                'descricao_tipo_socorro': pa.Column(
+                    dtype=str,
+                    description='Descrição do tipo de socorro',
+                ),
+                'resource_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do recurso',
+                ),
+                'package_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do pacote',
+                ),
+                'name': pa.Column(
+                    dtype=str,
+                    description='Nome do recurso',
+                ),
+                'last_modified': pa.Column(
+                    dtype=pd.Timestamp,
+                    description='Data e hora da última modificação',
+                ),
+                'nss_boletim': pa.Column(
+                    dtype=str,
+                    description='NSS do boletim',
+                ),
+            },
+        )

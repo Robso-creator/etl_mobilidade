@@ -1,3 +1,5 @@
+import pandas as pd
+import pandera as pa
 from sqlalchemy import Boolean
 from sqlalchemy import Column
 from sqlalchemy import DateTime
@@ -52,3 +54,95 @@ class SinalizacaoSemaforica(Base):
     def get_config_dict(self):
         config = mount_config_dict(self)
         return config
+
+    @staticmethod
+    def get_dc_schema() -> pa.DataFrameSchema:
+        return pa.DataFrameSchema(
+            columns={
+                'id': pa.Column(
+                    dtype=int,
+                    checks=[
+                        pa.Check(lambda s: s.is_unique, error="A coluna 'id' deve conter valores únicos"),
+                    ],
+                    nullable=False,
+                    required=True,
+                    description='Identificador único da sinalização semafórica',
+                ),
+                'fid': pa.Column(
+                    dtype=str,
+                    description='ID da sinalização semafórica',
+                ),
+                'id_sinalizacao_semaforica': pa.Column(
+                    dtype=int,
+                    description='Identificador da sinalização semafórica',
+                ),
+                'cod_sinalizacao_semaforica': pa.Column(
+                    dtype=str,
+                    description='Código da sinalização semafórica',
+                ),
+                'nome': pa.Column(
+                    dtype=str,
+                    description='Nome da localização da sinalização semafórica',
+                ),
+                'tp_travessia_pedestre': pa.Column(
+                    dtype=str,
+                    description='Tipo de travessia de pedestre',
+                ),
+                'botoeira': pa.Column(
+                    dtype=bool,
+                    description='Indicação de botoeira (True/False)',
+                ),
+                'botoeira_sonora': pa.Column(
+                    dtype=bool,
+                    description='Indicação de botoeira sonora (True/False)',
+                ),
+                'laco_detector_veicular': pa.Column(
+                    dtype=bool,
+                    description='Indicação de laço detector veicular (True/False)',
+                ),
+                'qtd_tr_c_foco': pa.Column(
+                    dtype=int,
+                    description='Quantidade de travessias com foco',
+                ),
+                'qtd_tr_s_foco': pa.Column(
+                    dtype=int,
+                    description='Quantidade de travessias sem foco',
+                ),
+                'geometria': pa.Column(
+                    dtype=str,
+                    description='Geometria da localização da sinalização semafórica',
+                ),
+                'resource_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do recurso',
+                ),
+                'package_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do pacote',
+                ),
+                'last_modified': pa.Column(
+                    dtype=pd.Timestamp,
+                    description='Data e hora da última modificação',
+                ),
+                'easting': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Coordenada Easting',
+                ),
+                'northing': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Coordenada Northing',
+                ),
+                'latitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Latitude',
+                ),
+                'longitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Longitude',
+                ),
+            },
+        )

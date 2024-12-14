@@ -1,3 +1,5 @@
+import pandas as pd
+import pandera as pa
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import Float
@@ -49,3 +51,74 @@ class CirculacaoViaria(Base):
     def get_config_dict(self):
         config = mount_config_dict(self)
         return config
+
+    @staticmethod
+    def get_dc_schema() -> pa.DataFrameSchema:
+        return pa.DataFrameSchema(
+            columns={
+                'id': pa.Column(
+                    dtype=int,
+                    checks=[
+                        pa.Check(lambda s: s.is_unique, error="A coluna 'id' deve conter valores únicos"),
+                    ],
+                    nullable=False,
+                    required=True,
+                ),
+                'id_ntcv': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                ),
+                'geometria': pa.Column(
+                    dtype=str,
+                ),
+                'resource_id': pa.Column(
+                    dtype=str,
+                ),
+                'package_id': pa.Column(
+                    dtype=str,
+                ),
+                'name': pa.Column(
+                    dtype=str,
+                ),
+                'last_modified': pa.Column(
+                    dtype=pd.Timestamp,
+                ),
+                'id_tcv': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                ),
+                'tipo_trecho_circulacao': pa.Column(
+                    dtype=str,
+                ),
+                'tipo_logradouro': pa.Column(
+                    dtype=str,
+                ),
+                'logradouro': pa.Column(
+                    dtype=str,
+                ),
+                'id_no_circ_inicial': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                ),
+                'id_no_circ_final': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                ),
+                'easting': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                ),
+                'northing': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                ),
+                'latitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                ),
+                'longitude': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                ),
+            },
+        )

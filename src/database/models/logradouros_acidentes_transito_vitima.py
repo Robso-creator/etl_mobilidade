@@ -1,3 +1,5 @@
+import pandas as pd
+import pandera as pa
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import Float
@@ -38,7 +40,7 @@ class LogradourosAcidentesTransitoVitima(Base):
     nome_bairro = Column('nome_bairro', String(50), comment='Nome do bairro')
     tipo_bairro = Column('tipo_bairro', String(2), comment='Tipo do bairro')
     descricao_tipo_bairro = Column('descricao_tipo_bairro', String(20), comment='Descrição do tipo de bairro')
-    numero_imovel = Column('numero_imovel', Integer, comment='Número do imóvel')
+    numero_imovel = Column('numero_imovel', String, comment='Número do imóvel')
     numero_imovel_proximo = Column('numero_imovel_proximo', Float, comment='Número do imóvel próximo')
     resource_id = Column('resource_id', String, comment='Identificador único do recurso')
     package_id = Column('package_id', String, comment='Identificador único do pacote')
@@ -53,3 +55,104 @@ class LogradourosAcidentesTransitoVitima(Base):
     def get_config_dict(self):
         config = mount_config_dict(self)
         return config
+
+    @staticmethod
+    def get_dc_schema() -> pa.DataFrameSchema:
+        return pa.DataFrameSchema(
+            columns={
+                'id': pa.Column(
+                    dtype=int,
+                    checks=[
+                        pa.Check(lambda s: s.is_unique, error="A coluna 'id' deve conter valores únicos"),
+                    ],
+                    nullable=False,
+                    required=True,
+                    description='Identificador único do logradouro',
+                ),
+                'numero_boletim': pa.Column(
+                    dtype=str,
+                    description='Número do boletim de ocorrência',
+                ),
+                'data_hora_boletim': pa.Column(
+                    dtype=pd.Timestamp,
+                    description='Data e hora do boletim',
+                ),
+                'numero_municipio': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Número do município',
+                ),
+                'nome_municipio': pa.Column(
+                    dtype=str,
+                    description='Nome do município',
+                ),
+                'sequencia_logradouros': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Sequência dos logradouros',
+                ),
+                'numero_logradouro': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Número do logradouro',
+                ),
+                'tipo_logradouro': pa.Column(
+                    dtype=str,
+                    description='Tipo de logradouro',
+                ),
+                'nome_logradouro': pa.Column(
+                    dtype=str,
+                    description='Nome do logradouro',
+                ),
+                'tipo_logradouro_anterior': pa.Column(
+                    dtype=str,
+                    description='Tipo do logradouro anterior',
+                ),
+                'numero_bairro': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Número do bairro',
+                ),
+                'nome_bairro': pa.Column(
+                    dtype=str,
+                    description='Nome do bairro',
+                ),
+                'tipo_bairro': pa.Column(
+                    dtype=str,
+                    description='Tipo do bairro',
+                ),
+                'descricao_tipo_bairro': pa.Column(
+                    dtype=str,
+                    description='Descrição do tipo de bairro',
+                ),
+                'numero_imovel': pa.Column(
+                    dtype=str,
+                    description='Número do imóvel',
+                ),
+                'numero_imovel_proximo': pa.Column(
+                    dtype=float,
+                    nullable=True,
+                    description='Número do imóvel próximo',
+                ),
+                'resource_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do recurso',
+                ),
+                'package_id': pa.Column(
+                    dtype=str,
+                    description='Identificador único do pacote',
+                ),
+                'name': pa.Column(
+                    dtype=str,
+                    description='Nome do recurso',
+                ),
+                'last_modified': pa.Column(
+                    dtype=pd.Timestamp,
+                    description='Data e hora da última modificação',
+                ),
+                'nome_logradouro_anterior': pa.Column(
+                    dtype=str,
+                    description='Nome do logradouro anterior',
+                ),
+            },
+        )

@@ -1,8 +1,8 @@
 """'main'
 
-Revision ID: 2610f232a617
+Revision ID: 32c5344746e7
 Revises:
-Create Date: 2024-12-13 19:46:08.295255
+Create Date: 2024-12-14 14:37:28.961085
 
 """
 from typing import Sequence
@@ -13,7 +13,7 @@ from alembic import op
 
 
 # revision identifiers, used by Alembic.
-revision: str = '2610f232a617'
+revision: str = '32c5344746e7'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -144,7 +144,7 @@ def upgrade() -> None:
         sa.Column('nome_bairro', sa.String(length=50), nullable=True, comment='Nome do bairro'),
         sa.Column('tipo_bairro', sa.String(length=2), nullable=True, comment='Tipo do bairro'),
         sa.Column('descricao_tipo_bairro', sa.String(length=20), nullable=True, comment='Descrição do tipo de bairro'),
-        sa.Column('numero_imovel', sa.Integer(), nullable=True, comment='Número do imóvel'),
+        sa.Column('numero_imovel', sa.String(), nullable=True, comment='Número do imóvel'),
         sa.Column('numero_imovel_proximo', sa.Float(), nullable=True, comment='Número do imóvel próximo'),
         sa.Column('resource_id', sa.String(), nullable=True, comment='Identificador único do recurso'),
         sa.Column('package_id', sa.String(), nullable=True, comment='Identificador único do pacote'),

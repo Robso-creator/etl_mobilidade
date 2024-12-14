@@ -23,8 +23,10 @@ def main():
     _log.info('Concatenating dataframes')
     df_final = pd.concat(df_list, ignore_index=True)
     del df_list
-    _log.info('Extracting coordinates')
+
+    _log.info('Getting coordinates from geometria')
     df_final[['easting', 'northing']] = df_final['geometria'].apply(lambda x: pd.Series(extract_coordinates_linestring(x)))
+    _log.info('Converting UTM to lat/lon')
     df_final[['latitude', 'longitude']] = df_final.apply(
         lambda row: pd.Series(convert_utm_to_latlon(row['easting'], row['northing'])),
         axis=1,
