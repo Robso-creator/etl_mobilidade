@@ -1,0 +1,2396 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.6">
+    
+    
+      
+        <title>Catalogação de dados do banco de ETL Mobilidade - ETL Mobilidade BH</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#catalogacao-de-dados-do-banco-de-etl-mobilidade" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ETL Mobilidade BH" class="md-header__button md-logo" aria-label="ETL Mobilidade BH" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ETL Mobilidade BH
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Catalogação de dados do banco de ETL Mobilidade
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="indigo"  aria-label="Modo noturno"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo noturno" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Robso-creator/etl_mobilidade" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ETL Mobilidade BH" class="md-nav__button md-logo" aria-label="ETL Mobilidade BH" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ETL Mobilidade BH
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Robso-creator/etl_mobilidade" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ETL Dados de Mobilidade da Prefeitura de Belo Horizonte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Catalogação de dados do banco de ETL Mobilidade
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Catalogação de dados do banco de ETL Mobilidade
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-circulacao_viaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      1) circulacao_viaria
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estacionamento_rotativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      2) estacionamento_rotativo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-estacionamento_rotativo_idoso" class="md-nav__link">
+    <span class="md-ellipsis">
+      3) estacionamento_rotativo_idoso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-estacionamento_rotativo_motofrete" class="md-nav__link">
+    <span class="md-ellipsis">
+      4) estacionamento_rotativo_motofrete
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-logradouros_acidentes_transito_vitima" class="md-nav__link">
+    <span class="md-ellipsis">
+      5) logradouros_acidentes_transito_vitima
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ocorrencias_acidentes_transito_vitima" class="md-nav__link">
+    <span class="md-ellipsis">
+      6) ocorrencias_acidentes_transito_vitima
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pessoas_acidentes_transito_vitima" class="md-nav__link">
+    <span class="md-ellipsis">
+      7) pessoas_acidentes_transito_vitima
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-posto_venda_rotativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      8) posto_venda_rotativo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-redutor_velocidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      9) redutor_velocidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-sinalizacao_semaforica" class="md-nav__link">
+    <span class="md-ellipsis">
+      10) sinalizacao_semaforica
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-veiculos_acidentes_transito_vitima" class="md-nav__link">
+    <span class="md-ellipsis">
+      11) veiculos_acidentes_transito_vitima
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-circulacao_viaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      1) circulacao_viaria
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estacionamento_rotativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      2) estacionamento_rotativo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-estacionamento_rotativo_idoso" class="md-nav__link">
+    <span class="md-ellipsis">
+      3) estacionamento_rotativo_idoso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-estacionamento_rotativo_motofrete" class="md-nav__link">
+    <span class="md-ellipsis">
+      4) estacionamento_rotativo_motofrete
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-logradouros_acidentes_transito_vitima" class="md-nav__link">
+    <span class="md-ellipsis">
+      5) logradouros_acidentes_transito_vitima
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ocorrencias_acidentes_transito_vitima" class="md-nav__link">
+    <span class="md-ellipsis">
+      6) ocorrencias_acidentes_transito_vitima
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pessoas_acidentes_transito_vitima" class="md-nav__link">
+    <span class="md-ellipsis">
+      7) pessoas_acidentes_transito_vitima
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-posto_venda_rotativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      8) posto_venda_rotativo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-redutor_velocidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      9) redutor_velocidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-sinalizacao_semaforica" class="md-nav__link">
+    <span class="md-ellipsis">
+      10) sinalizacao_semaforica
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-veiculos_acidentes_transito_vitima" class="md-nav__link">
+    <span class="md-ellipsis">
+      11) veiculos_acidentes_transito_vitima
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="catalogacao-de-dados-do-banco-de-etl-mobilidade">Catalogação de dados do banco de ETL Mobilidade</h1>
+<p>Hoje temos <strong>11 tabelas</strong> construídas no banco de dados. A seguir mais detalhes de cada tabela por ordem alfabética: </p>
+<h2 id="1-circulacao_viaria">1) <strong>circulacao_viaria</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um trecho de circulação registrado </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Circulação Viária - Nó do Trecho </p>
+<p><strong>produto</strong>: Mobilidade Urbana </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do trecho</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_ntcv</strong></td>
+<td>Decimal</td>
+<td>Identificador NTCV</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>geometria</strong></td>
+<td>Texto</td>
+<td>Geometria do trecho</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do trecho</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_tcv</strong></td>
+<td>Decimal</td>
+<td>Identificador TCV</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_trecho_circulacao</strong></td>
+<td>Texto</td>
+<td>Tipo de trecho de circulação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_logradouro</strong></td>
+<td>Texto</td>
+<td>Tipo de logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>logradouro</strong></td>
+<td>Texto</td>
+<td>Logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_no_circ_inicial</strong></td>
+<td>Decimal</td>
+<td>Identificador do nó inicial</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_no_circ_final</strong></td>
+<td>Decimal</td>
+<td>Identificador do nó final</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>easting</strong></td>
+<td>Decimal</td>
+<td>Coordenada Easting</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>northing</strong></td>
+<td>Decimal</td>
+<td>Coordenada Northing</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Decimal</td>
+<td>Latitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Decimal</td>
+<td>Longitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-estacionamento_rotativo">2) <strong>estacionamento_rotativo</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um estacionamento rotativo </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Estacionamento Rotativo </p>
+<p><strong>produto</strong>: Mobilidade </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do estacionamento</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>fid</strong></td>
+<td>Texto</td>
+<td>ID do estacionamento rotativo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_estacionamento</strong></td>
+<td>Inteiro</td>
+<td>Identificador do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_vagas_fisicas</strong></td>
+<td>Inteiro</td>
+<td>Número de vagas físicas</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_vagas_rotativas</strong></td>
+<td>Inteiro</td>
+<td>Número de vagas rotativas</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tempo_permanencia</strong></td>
+<td>Texto</td>
+<td>Tempo máximo de permanência</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>logradouro</strong></td>
+<td>Texto</td>
+<td>Nome do logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>referencia_logradouro</strong></td>
+<td>Texto</td>
+<td>Referência do logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>bairro</strong></td>
+<td>Texto</td>
+<td>Bairro do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>geometria</strong></td>
+<td>Texto</td>
+<td>Geometria do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>periodo_valido_regra_operacao</strong></td>
+<td>Texto</td>
+<td>Período válido de operação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>dia_regra_operacao</strong></td>
+<td>Texto</td>
+<td>Dias da semana de operação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>easting</strong></td>
+<td>Decimal</td>
+<td>Coordenada Easting</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>northing</strong></td>
+<td>Decimal</td>
+<td>Coordenada Northing</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Decimal</td>
+<td>Latitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Decimal</td>
+<td>Longitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-estacionamento_rotativo_idoso">3) <strong>estacionamento_rotativo_idoso</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um estacionamento rotativo para idosos </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Localização das Vagas de Estacionamento de Idosos </p>
+<p><strong>produto</strong>: Mobilidade </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do estacionamento</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>fid</strong></td>
+<td>Texto</td>
+<td>ID do estacionamento rotativo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_edesp</strong></td>
+<td>Inteiro</td>
+<td>Identificador de estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_estacionamento</strong></td>
+<td>Texto</td>
+<td>Tipo de estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>destinacao_especifica</strong></td>
+<td>Texto</td>
+<td>Destinação específica do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>dia_regra_operacao</strong></td>
+<td>Texto</td>
+<td>Dias da semana de operação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>periodo_valido_regra_operacao</strong></td>
+<td>Texto</td>
+<td>Período válido de operação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_vagas_fisicas</strong></td>
+<td>Inteiro</td>
+<td>Número de vagas físicas</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_vagas_rotativas</strong></td>
+<td>Inteiro</td>
+<td>Número de vagas rotativas</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tempo_permanencia</strong></td>
+<td>Texto</td>
+<td>Tempo máximo de permanência</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_logradouro</strong></td>
+<td>Texto</td>
+<td>Tipo de logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>logradouro</strong></td>
+<td>Texto</td>
+<td>Nome do logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>referencia_logradouro</strong></td>
+<td>Texto</td>
+<td>Referência do logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>bairro</strong></td>
+<td>Texto</td>
+<td>Bairro do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>geometria</strong></td>
+<td>Texto</td>
+<td>Geometria do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>easting</strong></td>
+<td>Decimal</td>
+<td>Coordenada Easting</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>northing</strong></td>
+<td>Decimal</td>
+<td>Coordenada Northing</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Decimal</td>
+<td>Latitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Decimal</td>
+<td>Longitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-estacionamento_rotativo_motofrete">4) <strong>estacionamento_rotativo_motofrete</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um estacionamento rotativo para motofrete </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Localização das Vagas de Estacionamento para Motofrete </p>
+<p><strong>produto</strong>: Mobilidade </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do estacionamento</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>fid</strong></td>
+<td>Texto</td>
+<td>ID do estacionamento rotativo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_edesp</strong></td>
+<td>Inteiro</td>
+<td>Identificador de estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_estacionamento</strong></td>
+<td>Texto</td>
+<td>Tipo de estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>destinacao_especifica</strong></td>
+<td>Texto</td>
+<td>Destinação específica do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>dia_regra_operacao</strong></td>
+<td>Texto</td>
+<td>Dias da semana de operação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>periodo_valido_regra_operacao</strong></td>
+<td>Texto</td>
+<td>Período válido de operação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_vagas_fisicas</strong></td>
+<td>Inteiro</td>
+<td>Número de vagas físicas</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_vagas_rotativas</strong></td>
+<td>Inteiro</td>
+<td>Número de vagas rotativas</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tempo_permanencia</strong></td>
+<td>Texto</td>
+<td>Tempo máximo de permanência</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_logradouro</strong></td>
+<td>Texto</td>
+<td>Tipo de logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>logradouro</strong></td>
+<td>Texto</td>
+<td>Nome do logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>referencia_logradouro</strong></td>
+<td>Texto</td>
+<td>Referência do logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>bairro</strong></td>
+<td>Texto</td>
+<td>Bairro do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>geometria</strong></td>
+<td>Texto</td>
+<td>Geometria do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do estacionamento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>easting</strong></td>
+<td>Decimal</td>
+<td>Coordenada Easting</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>northing</strong></td>
+<td>Decimal</td>
+<td>Coordenada Northing</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Decimal</td>
+<td>Latitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Decimal</td>
+<td>Longitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-logradouros_acidentes_transito_vitima">5) <strong>logradouros_acidentes_transito_vitima</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um logradouro onde ocorreu um acidente de trânsito com vítima registrado </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Relação dos logradouros dos locais de acidentes de trânsito com vítima </p>
+<p><strong>produto</strong>: Mobilidade Urbana </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do logradouro</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_boletim</strong></td>
+<td>Texto</td>
+<td>Número do boletim de ocorrência</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>data_hora_boletim</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora do boletim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_municipio</strong></td>
+<td>Decimal</td>
+<td>Número do município</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>nome_municipio</strong></td>
+<td>Texto</td>
+<td>Nome do município</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>sequencia_logradouros</strong></td>
+<td>Decimal</td>
+<td>Sequência dos logradouros</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_logradouro</strong></td>
+<td>Decimal</td>
+<td>Número do logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_logradouro</strong></td>
+<td>Texto</td>
+<td>Tipo de logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>nome_logradouro</strong></td>
+<td>Texto</td>
+<td>Nome do logradouro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_logradouro_anterior</strong></td>
+<td>Texto</td>
+<td>Tipo do logradouro anterior</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_bairro</strong></td>
+<td>Decimal</td>
+<td>Número do bairro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>nome_bairro</strong></td>
+<td>Texto</td>
+<td>Nome do bairro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_bairro</strong></td>
+<td>Texto</td>
+<td>Tipo do bairro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>descricao_tipo_bairro</strong></td>
+<td>Texto</td>
+<td>Descrição do tipo de bairro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_imovel</strong></td>
+<td>Texto</td>
+<td>Número do imóvel</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_imovel_proximo</strong></td>
+<td>Decimal</td>
+<td>Número do imóvel próximo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>nome_logradouro_anterior</strong></td>
+<td>Texto</td>
+<td>Nome do logradouro anterior</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-ocorrencias_acidentes_transito_vitima">6) <strong>ocorrencias_acidentes_transito_vitima</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: uma ocorrência de acidente de trânsito com vítima registrada </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Relação de ocorrências de acidentes de trânsito com vítima </p>
+<p><strong>produto</strong>: Mobilidade Urbana </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único da ocorrência</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_boletim</strong></td>
+<td>Texto</td>
+<td>Número do boletim de ocorrência</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>data_hora_boletim</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora do boletim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>data_inclusao</strong></td>
+<td>Data/Hora</td>
+<td>Data de inclusão do boletim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_acidente</strong></td>
+<td>Texto</td>
+<td>Tipo de acidente</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>desc_tipo_acidente</strong></td>
+<td>Texto</td>
+<td>Descrição do tipo de acidente</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>cod_tempo</strong></td>
+<td>Inteiro</td>
+<td>Código do tempo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>desc_tempo</strong></td>
+<td>Texto</td>
+<td>Descrição do tempo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>cod_pavimento</strong></td>
+<td>Inteiro</td>
+<td>Código do pavimento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>pavimento</strong></td>
+<td>Texto</td>
+<td>Descrição do pavimento</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>cod_regional</strong></td>
+<td>Inteiro</td>
+<td>Código da região</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>desc_regional</strong></td>
+<td>Texto</td>
+<td>Descrição da região</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>origem_boletim</strong></td>
+<td>Texto</td>
+<td>Origem do boletim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>local_sinalizado</strong></td>
+<td>Booleano</td>
+<td>Indicador se o local é sinalizado</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>velocidade_permitida</strong></td>
+<td>Inteiro</td>
+<td>Velocidade permitida no local</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>easting</strong></td>
+<td>Decimal</td>
+<td>Coordenada Easting</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>northing</strong></td>
+<td>Decimal</td>
+<td>Coordenada Northing</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>hora_informada</strong></td>
+<td>Booleano</td>
+<td>Indicador se a hora foi informada</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>indicador_fatalidade</strong></td>
+<td>Booleano</td>
+<td>Indicador de fatalidade</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>valor_ups</strong></td>
+<td>Inteiro</td>
+<td>Valor UPS</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>descricao_ups</strong></td>
+<td>Texto</td>
+<td>Descrição da UPS</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>data_alteracao_smsa</strong></td>
+<td>Data/Hora</td>
+<td>Data de alteração pela SMSA</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>valor_ups_antiga</strong></td>
+<td>Inteiro</td>
+<td>Valor da UPS antiga</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>descricao_ups_antiga</strong></td>
+<td>Texto</td>
+<td>Descrição da UPS antiga</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Decimal</td>
+<td>Latitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Decimal</td>
+<td>Longitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-pessoas_acidentes_transito_vitima">7) <strong>pessoas_acidentes_transito_vitima</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um envolvido em um acidente de trânsito com vítima registrado </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Relação das pessoas envolvidas nos acidentes de trânsito com vítima </p>
+<p><strong>produto</strong>: Segurança Viária </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do envolvido</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>num_boletim</strong></td>
+<td>Texto</td>
+<td>Número do boletim de ocorrência</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>data_hora_boletim</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora do boletim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>no_envolvido</strong></td>
+<td>Inteiro</td>
+<td>Número do envolvido no acidente</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>condutor</strong></td>
+<td>Booleano</td>
+<td>Indicador se o envolvido era o condutor</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>cod_severidade</strong></td>
+<td>Inteiro</td>
+<td>Código da severidade do acidente</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>desc_severidade</strong></td>
+<td>Texto</td>
+<td>Descrição da severidade do acidente</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>sexo</strong></td>
+<td>Texto</td>
+<td>Sexo do envolvido</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>cinto_seguranca</strong></td>
+<td>Booleano</td>
+<td>Indicador se o envolvido estava usando cinto de segurança</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>embreagues</strong></td>
+<td>Booleano</td>
+<td>Indicador se o envolvido estava embriagado</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>idade</strong></td>
+<td>Inteiro</td>
+<td>Idade do envolvido</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>nascimento</strong></td>
+<td>Data/Hora</td>
+<td>Data de nascimento do envolvido</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>categoria_habilitacao</strong></td>
+<td>Texto</td>
+<td>Categoria da habilitação do envolvido</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>descricao_habilitacao</strong></td>
+<td>Texto</td>
+<td>Descrição da habilitação do envolvido</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>declaracao_obito</strong></td>
+<td>Booleano</td>
+<td>Indicador se houve declaração de óbito</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>especie_veiculo</strong></td>
+<td>Texto</td>
+<td>Espécie do veículo envolvido</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>pedestre</strong></td>
+<td>Booleano</td>
+<td>Indicador se o envolvido era pedestre</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>passageiro</strong></td>
+<td>Booleano</td>
+<td>Indicador se o envolvido era passageiro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-posto_venda_rotativo">8) <strong>posto_venda_rotativo</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um posto de venda rotativo registrado </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Posto de Venda Rotativo </p>
+<p><strong>produto</strong>: Mobilidade Urbana </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do posto de venda rotativo</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_posto_venda_rotativo</strong></td>
+<td>Inteiro</td>
+<td>Identificador do posto de venda rotativo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>endereco</strong></td>
+<td>Texto</td>
+<td>Endereço do posto de venda rotativo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>complemento</strong></td>
+<td>Texto</td>
+<td>Complemento do endereço</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>geometria</strong></td>
+<td>Texto</td>
+<td>Geometria do posto de venda rotativo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>easting</strong></td>
+<td>Decimal</td>
+<td>Coordenada Easting</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>northing</strong></td>
+<td>Decimal</td>
+<td>Coordenada Northing</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Decimal</td>
+<td>Latitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Decimal</td>
+<td>Longitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-redutor_velocidade">9) <strong>redutor_velocidade</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um redutor de velocidade registrado </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Redutor de Velocidade </p>
+<p><strong>produto</strong>: Mobilidade Urbana </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do redutor de velocidade</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_redutor_velocidade</strong></td>
+<td>Inteiro</td>
+<td>Identificador do redutor de velocidade</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>num_projeto_operacional</strong></td>
+<td>Texto</td>
+<td>Número do projeto operacional</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>endereco_referencia</strong></td>
+<td>Texto</td>
+<td>Endereço de referência do redutor de velocidade</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>bairro</strong></td>
+<td>Texto</td>
+<td>Bairro onde está localizado o redutor de velocidade</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>referencia_localizacao</strong></td>
+<td>Texto</td>
+<td>Referência da localização do redutor de velocidade</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>data_implantacao</strong></td>
+<td>Data/Hora</td>
+<td>Data de implantação do redutor de velocidade</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>data_ultima_manutencao</strong></td>
+<td>Data/Hora</td>
+<td>Data da última manutenção do redutor de velocidade</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>geometria</strong></td>
+<td>Texto</td>
+<td>Geometria do redutor de velocidade</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>easting</strong></td>
+<td>Decimal</td>
+<td>Coordenada Easting</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>northing</strong></td>
+<td>Decimal</td>
+<td>Coordenada Northing</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Decimal</td>
+<td>Latitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Decimal</td>
+<td>Longitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-sinalizacao_semaforica">10) <strong>sinalizacao_semaforica</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: uma sinalização semafórica registrada </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Localização das Sinalizações Semafóricas </p>
+<p><strong>produto</strong>: Sinalização Semafórica </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único da sinalização semafórica</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>fid</strong></td>
+<td>Texto</td>
+<td>ID da sinalização semafórica</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>id_sinalizacao_semaforica</strong></td>
+<td>Inteiro</td>
+<td>Identificador da sinalização semafórica</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>cod_sinalizacao_semaforica</strong></td>
+<td>Texto</td>
+<td>Código da sinalização semafórica</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>nome</strong></td>
+<td>Texto</td>
+<td>Nome da localização da sinalização semafórica</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tp_travessia_pedestre</strong></td>
+<td>Texto</td>
+<td>Tipo de travessia de pedestre</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>botoeira</strong></td>
+<td>Booleano</td>
+<td>Indicação de botoeira (True/False)</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>botoeira_sonora</strong></td>
+<td>Booleano</td>
+<td>Indicação de botoeira sonora (True/False)</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>laco_detector_veicular</strong></td>
+<td>Booleano</td>
+<td>Indicação de laço detector veicular (True/False)</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>qtd_tr_c_foco</strong></td>
+<td>Inteiro</td>
+<td>Quantidade de travessias com foco</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>qtd_tr_s_foco</strong></td>
+<td>Inteiro</td>
+<td>Quantidade de travessias sem foco</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>geometria</strong></td>
+<td>Texto</td>
+<td>Geometria da localização da sinalização semafórica</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>easting</strong></td>
+<td>Decimal</td>
+<td>Coordenada Easting</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>northing</strong></td>
+<td>Decimal</td>
+<td>Coordenada Northing</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Decimal</td>
+<td>Latitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Decimal</td>
+<td>Longitude</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-veiculos_acidentes_transito_vitima">11) <strong>veiculos_acidentes_transito_vitima</strong></h2>
+<p>Características da tabela:  </p>
+<p><strong>cada linha representa</strong>: um veículo envolvido em um acidente de trânsito com vítima registrado </p>
+<p><strong>frequência de atualização dos dados</strong>: Indeterminada </p>
+<p><strong>fonte de dados</strong>: Relação dos veículos envolvidos nos acidentes de trânsito com vítima </p>
+<p><strong>produto</strong>: Mobilidade Urbana </p>
+<p><strong>colunas que tornam uma linha única</strong>: id</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Comentário</th>
+<th>Chave Primária</th>
+<th>Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>Inteiro</td>
+<td>Identificador único do veículo</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>numero_boletim</strong></td>
+<td>Texto</td>
+<td>Número do boletim de ocorrência</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>data_hora_boletim</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora do boletim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>sequencial_veiculo</strong></td>
+<td>Decimal</td>
+<td>Sequencial do veículo no boletim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>codigo_categoria</strong></td>
+<td>Decimal</td>
+<td>Código da categoria do veículo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>descricao_categoria</strong></td>
+<td>Texto</td>
+<td>Descrição da categoria do veículo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>codigo_especie</strong></td>
+<td>Decimal</td>
+<td>Código da espécie do veículo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>descricao_especie</strong></td>
+<td>Texto</td>
+<td>Descrição da espécie do veículo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>codigo_situacao</strong></td>
+<td>Decimal</td>
+<td>Código da situação do veículo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>descricao_situacao</strong></td>
+<td>Texto</td>
+<td>Descrição da situação do veículo</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>tipo_socorro</strong></td>
+<td>Inteiro</td>
+<td>Tipo de socorro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>descricao_tipo_socorro</strong></td>
+<td>Texto</td>
+<td>Descrição do tipo de socorro</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>resource_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>package_id</strong></td>
+<td>Texto</td>
+<td>Identificador único do pacote</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Texto</td>
+<td>Nome do recurso</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td>Data/Hora</td>
+<td>Data e hora da última modificação</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><strong>nss_boletim</strong></td>
+<td>Texto</td>
+<td>NSS do boletim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e1c3ead8.min.js"></script>
+      
+    
+  </body>
+</html>
