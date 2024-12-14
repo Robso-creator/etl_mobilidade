@@ -1,4 +1,7 @@
 # ETL Dados de Mobilidade da Prefeitura de Belo Horizonte
+<sub>Don't speak Portuguese? [Click here](https://github.com/Robso-creator/etl_mobilidade/blob/main/README-en.md) to view
+this page in English</sub>
+
 *Projeto elaborado em **72 horas** para realizar a extração, transformação e carga de dados de mobilidade urbana da prefeitura de Belo Horizonte.*
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
@@ -48,7 +51,7 @@ python3 -m venv venv
 . venv/bin/activate
 
 # Instale as dependências
-pip install -r requirements.txt
+pip install -r requirements/requirements-dev.txt
 ```
 
 Crie arquivo `.env` no diretório raiz do projeto com as seguintes variáveis de ambiente:
@@ -60,7 +63,7 @@ MINIO_ROOT_USER=user
 MINIO_ROOT_PASSWORD=password
 MINIO_BUCKET=bucket-mobilidade-local
 
-DB_URI=postgresql://postgres:postgres@172.19.0.20:5432/mobilidade
+DB_URI=postgresql://postgres:postgres@172.19.0.20:5432/postgres
 ```
 
 ---
